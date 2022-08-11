@@ -18,9 +18,8 @@ public class Differ {
     }
 
     private static Map<String, Object> compareFiles(Map<String, Object> parseFileOne,
-                                                    Map<String, Object> parseFileSecond)
-    {
-        Comparator<String> comparator = new Comparator<String>(){
+                                                    Map<String, Object> parseFileSecond) {
+        Comparator<String> comparator = new Comparator<String>() {
             @Override
             public int compare(String s, String t1) {
                 if (s.equals(t1)) {
@@ -36,10 +35,10 @@ public class Differ {
                 resultMap.put((String) element.getKey(), "  :" + element.getValue());
             } else if (parseFileSecond.containsKey(element.getKey())
                     && !(parseFileSecond.get(element.getKey()).equals(element.getValue()))) {
-                resultMap.put((String) element.getKey(), "- :" +element.getValue());
+                resultMap.put((String) element.getKey(), "- :" + element.getValue());
                 resultMap.put((String) element.getKey(), "+ :" + parseFileSecond.get(element.getKey()));
             } else if (!(parseFileSecond.containsKey(element.getKey()))) {
-                resultMap.put((String) element.getKey(),"- :" + element.getValue());
+                resultMap.put((String) element.getKey(), "- :" + element.getValue());
             }
         }
         for (Map.Entry element : parseFileSecond.entrySet()) {
