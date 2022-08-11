@@ -12,12 +12,12 @@ application {
 
 jacoco {
     toolVersion = "0.8.8"
-    reportsDirectory = layout.buildDirectory.dir('build/reports/jacoco')
+    reportsDirectory = layout.buildDirectory.dir('reports/jacoco')
 }
 
 jacocoTestReport {
     reports {
-        xml.required = false
+        xml.required = true
         csv.required = false
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
