@@ -11,5 +11,3 @@ bin
 .project*
 .classpath
 .idea/
-src/test/resources/*.json
-src/test/resources/*.yml
