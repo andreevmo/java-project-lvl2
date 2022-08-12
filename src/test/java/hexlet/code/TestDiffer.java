@@ -68,6 +68,10 @@ public final class TestDiffer {
                 + "  + timeout: 20\n"
                 + "  + verbose: true\n"
                 + "}");
+        Files.delete(file1);
+        Files.delete(file2);
+        Files.delete(file3);
+        Files.delete(file4);
     }
 
     @Test
@@ -102,5 +106,9 @@ public final class TestDiffer {
                 + "  + name: Victor\n"
                 + "    status: false\n"
                 + "}");
+        Files.delete(file1);
+        Files.delete(file2);
+        Files.delete(file3);
+        Files.delete(file4);
     }
 }
