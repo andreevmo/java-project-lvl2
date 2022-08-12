@@ -36,6 +36,7 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.22.0")
     implementation 'info.picocli:picocli:4.6.3'
     implementation 'com.ainrif.apiator:jakson-plugin-core-json-renderer:0.15.1'
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.13.3'
 }
 
 test {

@@ -11,5 +11,5 @@ bin
 .project*
 .classpath
 .idea/
-src/test/resources/file1.json
-src/test/resources/file2.json
+src/test/resources/*.json
+src/test/resources/*.yml
