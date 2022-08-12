@@ -6,3 +6,6 @@
 
 Asciinema exercise 5(comparing flat json files):
 https://asciinema.org/a/ere61Dm8XXrZZsl5RGnanZaRR
+
+Asciinema exercise 7(comparing flat yaml files):
+https://asciinema.org/a/lUeklFlewxgnsdHdd1w5y7obg
