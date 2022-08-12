@@ -6,19 +6,11 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class Differ {
 
     public static String generate(Path filepath1, Path filepath2) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> parseFileOne = mapper.readValue(filepath1.toAbsolutePath().toFile(), Map.class);
-        Map<String, Object> parseFileSecond = mapper.readValue(filepath2.toAbsolutePath().toFile(), Map.class);
-        return mapToFormatString(compareFiles(parseFileOne, parseFileSecond));
-    }
-
-    private static Map<String, Object> compareFiles(Map<String, Object> parseFileOne,
-                                                    Map<String, Object> parseFileSecond) {
+        Map<String, Object> parseFileOne = Parser.parseFile(filepath1);
+        Map<String, Object> parseFileSecond = Parser.parseFile(filepath2);
         Comparator<String> comparator = new Comparator<String>() {
             @Override
             public int compare(String s, String t1) {
@@ -28,6 +20,11 @@ public class Differ {
                 return s.compareTo(t1);
             }
         };
+        return mapToFormatString(compareFiles(parseFileOne, parseFileSecond, comparator));
+    }
+
+    private static Map<String, Object> compareFiles(Map<String, Object> parseFileOne,
+                                                    Map<String, Object> parseFileSecond, Comparator comparator) {
         Map<String, Object> resultMap = new TreeMap<>(comparator);
         for (Map.Entry element : parseFileOne.entrySet()) {
             if (parseFileSecond.containsKey(element.getKey())
