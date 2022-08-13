@@ -1,7 +1,6 @@
 package hexlet.code;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 
 public class Differ {
 
-    public static String generate(Path filepath1, Path filepath2, String format) throws IOException {
+    public static String generate(String filepath1, String filepath2, String format) throws IOException {
         Map<String, Object> fileOne = Parser.parseFile(filepath1);
         Map<String, Object> fileSecond = Parser.parseFile(filepath2);
         return Formatter.format(compareFiles(fileOne, fileSecond), format);

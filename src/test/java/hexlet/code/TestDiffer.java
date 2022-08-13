@@ -3,16 +3,15 @@ package hexlet.code;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.io.IOException;
-import java.nio.file.Path;
 
 import static hexlet.code.Differ.generate;
 
 public final class TestDiffer {
 
-    private final Path file1 = Path.of("src/test/resources/file1.json").toAbsolutePath();
-    private final Path file2 = Path.of("src/test/resources/file2.json").toAbsolutePath();
-    private final Path file3 = Path.of("src/test/resources/file3.yml").toAbsolutePath();
-    private final Path file4 = Path.of("src/test/resources/file4.yml").toAbsolutePath();
+    private final String file1 = "src/test/resources/file1.json";
+    private final String file2 = "src/test/resources/file2.json";
+    private final String file3 = "src/test/resources/file3.yml";
+    private final String file4 = "src/test/resources/file4.yml";
 
     @Test
     public void testGenerateStylish() throws IOException {
