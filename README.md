@@ -9,3 +9,6 @@ https://asciinema.org/a/ere61Dm8XXrZZsl5RGnanZaRR
 
 Asciinema exercise 7(comparing flat yaml files):
 https://asciinema.org/a/lUeklFlewxgnsdHdd1w5y7obg
+
+Asciinema exercise 8(comparing json and yaml with recursive structure):
+https://asciinema.org/a/2eZj6Y7DKyhfkKIDcH0UKVHzd
