@@ -15,6 +15,10 @@ public class Differ {
         return Formatter.format(compareFiles(fileOne, fileSecond), format);
     }
 
+    public static String generate(String filepath1, String filepath2) throws IOException {
+        return generate(filepath1, filepath2, "stylish");
+    }
+
     private static Map<String, List<Object>> compareFiles(Map<String, Object> fileOne, Map<String, Object> fileSecond) {
         Map<String, List<Object>> result = new TreeMap<>((s1, s2) -> s1.equals(s2) ? 1 : s1.compareTo(s2));
         for (Map.Entry element : fileOne.entrySet()) {
