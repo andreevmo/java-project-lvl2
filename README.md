@@ -13,5 +13,8 @@ https://asciinema.org/a/lUeklFlewxgnsdHdd1w5y7obg
 Asciinema exercise 8(comparing json and yaml with recursive structure):
 https://asciinema.org/a/2eZj6Y7DKyhfkKIDcH0UKVHzd
 
-Asciinema exercise 9(comparing json and yaml with recursive structure using format plain):
+Asciinema exercise 9(comparing json and yaml with recursive structure using plain output format):
 https://asciinema.org/a/wDw6F1wX73hp2nrlM4rZeIHTb 
+
+Asciinema exercise 10(comparing json and yaml with recursive structure using json output format):
+https://asciinema.org/a/IXpXG07Gipo6DH0iWWUQxBqPB
