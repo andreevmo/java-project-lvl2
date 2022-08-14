@@ -13,18 +13,18 @@ public class Json {
         Map<String, Object> resultMap = new LinkedHashMap<>();
         for (Map.Entry<String, List<Object>> e : map.entrySet()) {
             switch (e.getValue().get(0).toString()) {
-                case "add" -> resultMap.put("!+ " + e.getKey(), e.getValue().get(1));
-                case "remove" -> resultMap.put("!- " + e.getKey(), e.getValue().get(1));
+                case "add" -> resultMap.put(" + " + e.getKey(), e.getValue().get(1));
+                case "remove" -> resultMap.put(" - " + e.getKey(), e.getValue().get(1));
                 case "update" -> {
-                    resultMap.put("!+ " + e.getKey(), e.getValue().get(1));
-                    resultMap.put("!- " + e.getKey(), e.getValue().get(2));
+                    resultMap.put(" + " + e.getKey(), e.getValue().get(1));
+                    resultMap.put(" - " + e.getKey(), e.getValue().get(2));
                 }
-                default -> resultMap.put("!  " + e.getKey(), e.getValue().get(1));
+                default -> resultMap.put("   " + e.getKey(), e.getValue().get(1));
             }
         }
         ObjectMapper mapper = new ObjectMapper();
         String result = mapper.writeValueAsString(resultMap);
-        return result.replaceAll("\"!", "\n\"")
+        return result.replaceAll("\" ", "\n\"")
                 .substring(0, result.lastIndexOf("}")) + "\n}";
     }
 }

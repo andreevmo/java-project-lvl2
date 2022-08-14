@@ -10,16 +10,25 @@ import java.util.Map;
 
 public class Parser {
 
+    private static ObjectMapper mapper = new ObjectMapper();
+
     public static Map<String, Object> parseFile(String address) throws IOException {
         Map<String, Object> parseFile = new HashMap<>();
         Path filepath = Path.of(address).toAbsolutePath();
-        if (filepath.toString().endsWith("json")) {
-            ObjectMapper mapper = new ObjectMapper();
-            parseFile = mapper.readValue(filepath.toAbsolutePath().toFile(), Map.class);
-        } else if (filepath.toString().endsWith("yml")) {
-            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-            parseFile = mapper.readValue(filepath.toAbsolutePath().toFile(), Map.class);
+        if (isJson(filepath)) {
+            parseFile = mapper.readValue(filepath.toFile(), Map.class);
+        } else if (isYaml(filepath)) {
+            mapper = new ObjectMapper(new YAMLFactory());
+            parseFile = mapper.readValue(filepath.toFile(), Map.class);
         }
         return parseFile;
+    }
+
+    public static boolean isJson(Path filepath) {
+        return filepath.toString().endsWith("json");
+    }
+
+    public static boolean isYaml(Path filepath) {
+        return filepath.toString().endsWith("yml");
     }
 }

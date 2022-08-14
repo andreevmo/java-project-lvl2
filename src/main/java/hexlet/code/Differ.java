@@ -23,9 +23,7 @@ public class Differ {
         Map<String, List<Object>> result = new TreeMap<>((s1, s2) -> s1.equals(s2) ? 1 : s1.compareTo(s2));
         for (Map.Entry element : fileOne.entrySet()) {
             if (fileSecond.containsKey(element.getKey())) {
-                if (element.getValue() != null && element.getValue().equals(fileSecond.get(element.getKey()))) {
-                    result.put((String) element.getKey(), createValue("unchanged", element.getValue()));
-                } else if (element.getValue() == null && null == fileSecond.get(element.getKey())) {
+                if (objectsEquals(element.getValue(), fileSecond.get(element.getKey()))) {
                     result.put((String) element.getKey(), createValue("unchanged", element.getValue()));
                 } else {
                     result.put((String) element.getKey(), createValue("update", element.getValue(),
@@ -41,6 +39,13 @@ public class Differ {
             }
         }
         return result;
+    }
+
+    private static boolean objectsEquals(Object o1, Object o2) {
+        if (o1 != null) {
+            return o1.equals(o2);
+        }
+        return  o2 == null;
     }
 
     private static List<Object> createValue(Object... value) {
