@@ -12,7 +12,8 @@ public class Differ {
     public static String generate(String filepath1, String filepath2, String format) throws IOException {
         Map<String, Object> fileOne = Parser.parseFile(filepath1);
         Map<String, Object> fileSecond = Parser.parseFile(filepath2);
-        return Formatter.format(compareFiles(fileOne, fileSecond), format);
+        Map<String, List<Object>> comparisonResult = compareFiles(fileOne, fileSecond);
+        return Formatter.format(comparisonResult, format);
     }
 
     public static String generate(String filepath1, String filepath2) throws IOException {

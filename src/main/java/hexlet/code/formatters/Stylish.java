@@ -10,26 +10,18 @@ public class Stylish {
         for (Map.Entry<String, List<Object>> element : resultMap.entrySet()) {
             result.append("\n  ");
             switch (element.getValue().get(0).toString()) {
-                case "add" -> result.append("+ ")
-                        .append(buildValue(element.getKey(), element.getValue().get(1)));
-                case "remove" -> result.append("- ")
-                        .append(buildValue(element.getKey(), element.getValue().get(1)));
-                case "update" -> result.append("- ")
-                        .append(buildValue(element.getKey(), element.getValue().get(1)))
-                        .append("\n  + ")
-                        .append(buildValue(element.getKey(), element.getValue().get(2)));
-                default -> result.append("  ")
-                        .append(buildValue(element.getKey(), element.getValue().get(1)));
+                case "add" -> result.append(buildLine("+ ", element.getKey(), element.getValue().get(1)));
+                case "remove" -> result.append(buildLine("- ", element.getKey(), element.getValue().get(1)));
+                case "update" -> result.append(buildLine("- ", element.getKey(), element.getValue().get(1)))
+                        .append("\n  ")
+                        .append(buildLine("+ ", element.getKey(), element.getValue().get(2)));
+                default -> result.append(buildLine("  ", element.getKey(), element.getValue().get(1)));
             }
         }
         return result.append("\n}").toString();
     }
 
-    private static String buildValue(String key, Object value) {
-        StringBuilder line = new StringBuilder();
-        return line.append(key)
-                .append(": ")
-                .append(value)
-                .toString();
+    private static String buildLine(String status, String key, Object value) {
+        return status + key + ": " + value;
     }
 }

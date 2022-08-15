@@ -7,7 +7,7 @@ import java.util.Map;
 public class Plain {
 
     public static String getFormatPlain(Map<String, List<Object>> resultMap) {
-        StringBuilder result = new StringBuilder("");
+        StringBuilder result = new StringBuilder();
         for (Map.Entry<String, List<Object>> element : resultMap.entrySet()) {
             switch (element.getValue().get(0).toString()) {
                 case "add" -> result.append("\nProperty '").append(element.getKey()).append("'")
@@ -20,7 +20,8 @@ public class Plain {
                         .append(buildValue(element.getValue().get(2)));
                 case "remove" -> result.append("\nProperty '").append(element.getKey()).append("'")
                         .append(" was removed");
-                default -> result.append("");
+                default -> {
+                }
             }
         }
         return result.toString().trim();

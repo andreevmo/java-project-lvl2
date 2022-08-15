@@ -18,7 +18,6 @@ public final class App implements Callable {
     private String filepath2;
     public static void main(String[] args) {
         System.exit(new CommandLine(new App()).execute(args));
-        System.out.println("Hello world!");
     }
 
     @Override
