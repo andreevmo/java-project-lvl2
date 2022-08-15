@@ -21,21 +21,18 @@ public class Differ {
 
     private static Map<String, List<Object>> compareFiles(Map<String, Object> fileOne, Map<String, Object> fileSecond) {
         Map<String, List<Object>> result = new TreeMap<>((s1, s2) -> s1.equals(s2) ? 1 : s1.compareTo(s2));
-        for (Map.Entry element : fileOne.entrySet()) {
-            if (fileSecond.containsKey(element.getKey())) {
-                if (objectsEquals(element.getValue(), fileSecond.get(element.getKey()))) {
-                    result.put((String) element.getKey(), createValue("unchanged", element.getValue()));
-                } else {
-                    result.put((String) element.getKey(), createValue("update", element.getValue(),
-                            fileSecond.get(element.getKey())));
-                }
+        for (Map.Entry e : fileOne.entrySet()) {
+            if (fileSecond.containsKey(e.getKey()) && objectsEquals(e.getValue(), fileSecond.get(e.getKey()))) {
+                result.put((String) e.getKey(), createValue("unchanged", e.getValue()));
+            } else if (fileSecond.containsKey(e.getKey()) && !objectsEquals(e.getValue(), fileSecond.get(e.getKey()))) {
+                result.put((String) e.getKey(), createValue("update", e.getValue(), fileSecond.get(e.getKey())));
             } else {
-                result.put((String) element.getKey(), createValue("remove", element.getValue()));
+                result.put((String) e.getKey(), createValue("remove", e.getValue()));
             }
         }
-        for (Map.Entry element : fileSecond.entrySet()) {
-            if (!fileOne.containsKey(element.getKey())) {
-                result.put((String) element.getKey(), createValue("add", element.getValue()));
+        for (Map.Entry e : fileSecond.entrySet()) {
+            if (!fileOne.containsKey(e.getKey())) {
+                result.put((String) e.getKey(), createValue("add", e.getValue()));
             }
         }
         return result;
