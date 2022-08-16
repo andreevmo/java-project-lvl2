@@ -1,0 +1,17 @@
+{
+"chars1":["unchanged",["a","b","c"]],
+"chars2":["update",["d","e","f"],false],
+"checked":["update",false,true],
+"default":["update",null,["value1","value2"]],
+"id":["update",45,null],
+"key1":["remove","value1"],
+"key2":["add","value2"],
+"numbers1":["unchanged",[1,2,3,4]],
+"numbers2":["update",[2,3,4,5],[22,33,44,55]],
+"numbers3":["remove",[3,4,5]],
+"numbers4":["add",[4,5,6]],
+"obj1":["add",{"nestedKey":"value","isNested":true}],
+"setting1":["update","Some value","Another value"],
+"setting2":["update",200,300],
+"setting3":["update",true,"none"]
+}
