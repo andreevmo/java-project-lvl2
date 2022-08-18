@@ -7,10 +7,10 @@ import java.util.Map;
 
 public class Parser {
 
-    public static Map<String, Object> parseFile(String text) throws IOException {
+    public static Map<String, Object> parseFile(String text, String format) throws IOException {
         Map<String, Object> parseFile;
         ObjectMapper mapper = new ObjectMapper();
-        if (!isJson(text)) {
+        if (format.equals("yml")) {
             mapper = new ObjectMapper(new YAMLFactory());
         }
         parseFile = mapper.readValue(text, Map.class);

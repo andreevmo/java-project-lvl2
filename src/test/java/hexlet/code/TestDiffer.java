@@ -63,7 +63,14 @@ public final class TestDiffer {
 
     @Test
     void testGenerateWithDifferentFileFormat() throws IOException {
-        assertThat(Differ.generate(FILE1, FILE3)).isEqualTo("wrong file format");
+        String expectedStylish = Files.lines(Path.of(EXPECTED_STYLISH))
+                .collect(Collectors.joining("\n"));
+        assertThat(Differ.generate(FILE1, FILE4)).isEqualTo(expectedStylish);
+    }
+
+    @Test
+    void testIncorrectFileFormat() throws IOException {
+        assertThat(Differ.generate(FILE1, EXPECTED_JSON)).isEqualTo("wrong file format");
     }
 
     @Test
@@ -71,7 +78,7 @@ public final class TestDiffer {
         String stringTest = Files.lines(Path.of(FILE1))
                 .collect(Collectors.joining("\n"));
         Map<String, Object> mapTest = new ObjectMapper().readValue(stringTest, Map.class);
-        assertThat(Parser.parseFile(stringTest)).isEqualTo(mapTest);
+        assertThat(Parser.parseFile(stringTest, "json")).isEqualTo(mapTest);
     }
 
     @Test

@@ -11,27 +11,27 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class Differ {
 
     public static String generate(String filepath1, String filepath2, String format) throws IOException {
-        if (!isCorrectFormat(filepath1, filepath2)) {
+        if (!(isCorrectFormat(filepath1) && isCorrectFormat(filepath2))) {
             return "wrong file format";
         }
-        String text1 = Files.lines(Path.of(filepath1))
-                .collect(Collectors.joining("\n"));
-        String text2 = Files.lines(Path.of(filepath2))
-                .collect(Collectors.joining("\n"));
-        Map<String, Object> fileOne = Parser.parseFile(text1);
-        Map<String, Object> fileSecond = Parser.parseFile(text2);
+        String text1 = Files.readString(Path.of(filepath1));
+        String text2 = Files.readString(Path.of(filepath2));
+        Map<String, Object> fileOne = Parser.parseFile(text1, getFormatFile(filepath1));
+        Map<String, Object> fileSecond = Parser.parseFile(text2, getFormatFile(filepath2));
         Map<String, List<Object>> comparisonResult = compareFiles(fileOne, fileSecond);
         return Formatter.format(comparisonResult, format);
     }
 
-    public static boolean isCorrectFormat(String filepath1, String filepath2) {
-        return (filepath1.endsWith(".json") && filepath2.endsWith(".json"))
-                || (filepath1.endsWith(".yml") && filepath2.endsWith(".yml"));
+    private static String getFormatFile(String file) {
+        return file.substring(file.lastIndexOf(".") + 1);
+    }
+
+    public static boolean isCorrectFormat(String filepath) {
+        return filepath.endsWith(".json") || filepath.endsWith(".yml");
     }
 
     public static String generate(String filepath1, String filepath2) throws IOException {
